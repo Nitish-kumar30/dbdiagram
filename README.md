@@ -3,6 +3,7 @@
 A small full-stack project to create, store, and share database diagrams (DBML). It includes a React + Vite frontend for editing and viewing diagrams and an Express + MongoDB backend for authentication and persistence.
 
 ## Features
+
 - User registration and authentication (JWT)
 - Create, edit and save DBML diagrams
 - Share diagrams via public token
@@ -19,6 +20,7 @@ A small full-stack project to create, store, and share database diagrams (DBML).
   - `src/` — React components, pages and utilities
 
 ## Prerequisites
+
 - Node.js 18+ and npm
 - A running MongoDB instance (Atlas or local)
 
@@ -68,17 +70,21 @@ Open the frontend at the URL printed by Vite (usually `http://localhost:5173`). 
 - `GET /api/auth/me` — protected — returns `{ user }` (requires `Authorization: Bearer <token>`)
 
 Models of note:
+
 - `User` — `{ name, email, password }` (password hashed)
 - `Diagram` — `{ title, schema, shareToken, isPublic, userId }`
 
 ## Notes & Next steps
+
 - Frontend uses `react-router` and `reactflow` for canvas editing.
 - To enable sharing, the backend generates `shareToken` values on diagrams; ensure routes exist in your app to fetch by token if you expose public diagrams.
 
 ## Contributing
+
 - Fork, create a feature branch, send a PR. Be sure to add tests for new behavior.
 
 ## License
+
 - Add your preferred license file if desired.
 
 ---

@@ -1,0 +1,72 @@
+const NODE_WIDTH =260;
+const HEADER_HEIGHT =42;
+const ROW_HEIGHT = 32;
+const COLUMN_GAP = 180;
+const ROW_GAP =70;
+const PADDING =80;
+
+function rowY(table,columnName){
+  const index = Math.max(table.columns.findIndex((column) => column.name === columnName),0,);
+
+  return table.y +HEADER_HEIGHT + index *ROW_HEIGHT + ROW_HEIGHT/2;
+}
+
+export function schemaToDiagram(parsedSchema){
+
+
+  const sourceTables = parsedSchema?.tables ||[];
+  const tableMap = new Map();
+  const positionedTables = sourceTables.map((table, index) => {
+
+
+    const column = Math.floor(index / 3);
+
+    const row = index % 3;
+
+    const height = HEADER_HEIGHT + Math.max(table.columns.length, 1) * ROW_HEIGHT;
+
+    const positioned = {
+      ...table,
+      x: PADDING + column *(NODE_WIDTH + COLUMN_GAP),
+      y: PADDING + row *(height + ROW_GAP),
+      width: NODE_WIDTH,
+      height,
+    };
+
+    tableMap.set(table.name, positioned);
+
+    return positioned;
+  });
+
+  const edges = (parsedSchema?.refs || []).map((ref, index) => {
+
+      const sourceTable = tableMap.get(ref.fromTable);
+
+      const targetTable = tableMap.get(ref.toTable);
+
+      if (!sourceTable || !targetTable){
+
+        return null;
+      }
+
+      return{
+        id:`${ref.fromTable}-${ref.fromCol}-${ref.toTable}-${ref.toCol}-${index}`,
+        relation:ref.relation,
+        source: {
+          x:sourceTable.x + sourceTable.width,
+          y:rowY(sourceTable,ref.fromCol),
+        },
+        target: {
+          x:targetTable.x,
+          y:rowY(targetTable,ref.toCol),
+        },
+      };
+
+    }).filter(Boolean);
+
+  const width = Math.max(1100,...positionedTables.map((table) =>table.x +table.width +PADDING));
+
+  const height = Math.max(720,...positionedTables.map((table) =>table.y +table.height +PADDING));
+
+  return {tables: positionedTables,edges,width,height,};
+}
