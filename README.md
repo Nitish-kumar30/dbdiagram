@@ -90,3 +90,5 @@ Models of note:
 ---
 
 If you want, I can commit this `README.md` and attempt to push to your GitHub remote now (you may be prompted for credentials). Tell me to proceed when ready.
+
+# dbdiagram
