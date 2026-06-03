@@ -37,6 +37,7 @@ const Navbar = () => {
       showAlert("danger", "Error", "Could not load projects.");
     }
   };
+  
 
   const handleSelectProject = (project) => {
     setCode(project.schema || "");
@@ -45,11 +46,13 @@ const Navbar = () => {
     setShowProjects(false);
   };
 
+
   const handleNewProject = () => {
     setCode("");
     setDiagramId(null);
     setTitle("Untitled project");
   };
+
 
   const handleSave = async () => {
     if (!user) {
@@ -73,6 +76,8 @@ const Navbar = () => {
     }
   };
 
+
+
   const handleShare = async () => {
     if (!user) {
       showAlert("warning", "Sign in required", "Please sign in to share.");
@@ -91,6 +96,8 @@ const Navbar = () => {
       showAlert("danger", "Error sharing", "Could not share the diagram.");
     }
   };
+
+
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -119,6 +126,8 @@ const Navbar = () => {
 
         {/* right part of navbar */}
         <div className="w-2/5 font-medium flex items-center gap-x-10 justify-end "> 
+
+        
           <div className="bg-blue-400 text-white w-15px flex items-center px-5 py-1 rounded-md cursor-pointer" onClick={handleSave}>
             <Save className="mr-1"/> {saving ? "Saving..." : "Save"}
           </div>
@@ -178,6 +187,9 @@ const Navbar = () => {
           </div>
         </div>
       )}
+
+
+
 
       {/* Floating Notifications */}
       {alertData && (
