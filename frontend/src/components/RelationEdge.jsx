@@ -1,26 +1,8 @@
 import React from 'react';
 import { BaseEdge, EdgeLabelRenderer, getBezierPath } from 'reactflow';
 
-export default function RelationEdge({
-  id,
-  sourceX,
-  sourceY,
-  targetX,
-  targetY,
-  sourcePosition,
-  targetPosition,
-  style = {},
-  markerEnd,
-  data,
-}) {
-  const [edgePath] = getBezierPath({
-    sourceX,
-    sourceY,
-    sourcePosition,
-    targetX,
-    targetY,
-    targetPosition,
-  });
+export default function RelationEdge({id,sourceX,sourceY,targetX,targetY, sourcePosition,targetPosition,style = {},markerEnd,data,}){
+  const [edgePath] = getBezierPath({sourceX,sourceY,sourcePosition,targetX,targetY,targetPosition,});
 
   return (
     <>

@@ -1,6 +1,17 @@
 import crypto from 'crypto';
 import Diagram from '../models/Diagram.js';
 
+export const getAllDiagrams = async (req, res) => {
+  try {
+    const diagrams = await Diagram.find({ userId: req.user._id })
+      .sort({ updatedAt: -1 })
+      .select('_id title updatedAt schema');
+    res.json(diagrams);
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 export const getLatestDiagram = async(req, res) => {
   try{
 
@@ -21,7 +32,7 @@ export const getLatestDiagram = async(req, res) => {
 
 export const saveDiagram = async(req, res) => {
   try{
-    const { title, schema } = req.body;
+    const {title, schema} = req.body;
       const newDiagram = new Diagram({
       title,
       schema,
@@ -39,7 +50,7 @@ export const saveDiagram = async(req, res) => {
 export const updateDiagram = async (req, res) => {
   try{
 
-    const { title, schema } = req.body;
+    const {title, schema} = req.body;
 
     const diagram = await Diagram.findOneAndUpdate(
 
@@ -87,6 +98,7 @@ export const getSharedDiagram = async (req, res) => {
       return res.status(404).json({ message: "Shared diagram not found" });
     }
     res.json(diagram);
+    
   } catch(error) {
     res.status(500).json({ message: "Server error" });
   }
