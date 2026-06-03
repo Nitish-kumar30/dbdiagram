@@ -7,6 +7,7 @@ import LoginPage from './Pages/LoginPage';
 import Navbar from './components/Navbar';
 import RegisterPage from './Pages/RegisterPage';
 import SamplePage from './Pages/SamplePage';
+import SharePage from './Pages/SharePage';
 
 
 
@@ -58,8 +59,7 @@ function App() {
       } 
       />
 
-
-   
+      <Route path="/share/:token" element={<SharePage />} />
 
     </Routes>
   );

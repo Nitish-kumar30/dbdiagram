@@ -32,6 +32,8 @@ function ReactFlowCanvas({ parsedSchema }) {
         <ReactFlow
           nodes={nodes}
           edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
           nodeTypes={nodeTypes}
           edgeTypes={edgeTypes}
         >
@@ -44,3 +46,5 @@ function ReactFlowCanvas({ parsedSchema }) {
 }
 
 export default ReactFlowCanvas;
+
+

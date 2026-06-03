@@ -4,6 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 
 import authRoutes from "./routes/authRoutes.js";
+import diagramRoutes from "./routes/diagramRoutes.js";
 
 
 
@@ -28,8 +29,7 @@ app.get("/health", (req, res) => {
 
 
 app.use("/api/auth", authRoutes);
-
-
+app.use("/api/diagrams", diagramRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });

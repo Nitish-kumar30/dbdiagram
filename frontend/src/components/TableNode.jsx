@@ -23,6 +23,7 @@ import { Handle, Position } from "reactflow";
 //     { name: "profile id", type: "int", pk: false, fk: true, notNull: false, unique: false }
 //   ]
 // }
+import { KeyRound, Link2 } from 'lucide-react';
 
 const TableNode = ({ data }) => {
   return (
@@ -34,6 +35,18 @@ const TableNode = ({ data }) => {
     </div>
   );
 };
+function ColumnIcon({ column }) {
+  if (column.pk) {
+    return <KeyRound size={14} />;
+  }
+
+  if (column.fk) {
+    return <Link2 size={14} />;
+  }
+
+  return <span className="w-3.5" />;
+}
+
 function ColumnRow({ column }) {
   return (
     <div className="bg-gray-300 ">
@@ -44,12 +57,16 @@ function ColumnRow({ column }) {
         type="target"
       />
       <div className="flex items-center justify-between px-3 py-1" >
-
-          <span className="mx-2" >{column.name}</span>
-      <span className="mx-2">   
+           
+          <span className="mx-2 flex item items-center px" >{column.name}
+              <ColumnIcon column={column} />
+          </span>
+          
+      <span className="mx-2"> 
+        {column.type}  
         {column.notNull &&  <span className="text-purple-600" >NN</span>}
         {column.unique &&  <span className="text-purple-600">U</span>}
-        {column.type}
+        
       </span>
 
       </div>
