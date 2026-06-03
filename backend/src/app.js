@@ -16,7 +16,7 @@ const port = process.env.PORT || 4000;
 const mongoUri = process.env.MONGODB_URI;
 if(!mongoUri){
   console.log("mongo uri is req");
-  process.exit
+  process.exit(1);
 }
 const allowedOrigin = process.env.CLIENT_URL || "http://localhost:5173";
 
