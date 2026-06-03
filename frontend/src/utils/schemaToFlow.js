@@ -4,10 +4,10 @@ import { getLayoutedElements } from './autoLayout';
 
 function getRelation(relation) {
   if (relation === 'many-to-one') 
-    return {source: '*', target: '0..1'};
+    return {source: '*', target: '1'};
 
   if (relation === 'one-to-many') 
-    return {source: '0..1' ,target: '*'};
+    return {source: '1' ,target: '*'};
 
   return {source: '1', target: '1'};
 }
@@ -32,6 +32,7 @@ function buildEdge(ref, index){
     id: edgeId,
     source: ref.fromTable,
     target: ref.toTable,
+    type: 'relation',
     
     animated: true,
     sourceHandle: `${sanitize(ref.fromCol)}-out`,

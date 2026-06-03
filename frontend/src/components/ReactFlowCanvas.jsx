@@ -6,11 +6,12 @@ import ReactFlow, {Background,Controls,
 import "reactflow/dist/style.css";
 
 import TableNode from "./TableNode";
+import RelationEdge from "./RelationEdge";
 
 import { schemaToFlow } from "../utils/schemaToFlow";
 
 const nodeTypes = { tableNode: TableNode };
-const edgeTypes = {};
+const edgeTypes = { relation: RelationEdge };
 function ReactFlowCanvas({ parsedSchema }) {
   // const initialEdges = [];
   // const [edges , setEdges ] = useState(initialEdges);

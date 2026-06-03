@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReactFlowCanvas from "../components/ReactFlowCanvas";
+import LeftEditor from "../components/LeftEditor";
 import { parseDbml } from "../utils/dbmlParser";
 import { api } from "../utils/api";
 
@@ -37,10 +38,10 @@ const SharePage = () => {
         </div>
       </div>
       <div className="flex-1 flex">
-        <div className="w-1/3 bg-gray-100 p-4 border-r border-gray-300 overflow-auto">
-          <pre className="text-sm font-mono whitespace-pre-wrap">{schema}</pre>
+        <div className="w-1/2 h-full">
+          <LeftEditor code={schema} onChange={() => {}} readOnly={true} />
         </div>
-        <div className="w-2/3 h-full relative bg-white">
+        <div className="w-1/2 h-full relative bg-white">
           <ReactFlowCanvas parsedSchema={parsedSchema} />
         </div>
       </div>

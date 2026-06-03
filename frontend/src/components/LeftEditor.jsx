@@ -1,7 +1,7 @@
-import React from "react";
+
 import Editor from "@monaco-editor/react";
 
-const LeftEditor = ({ code, onChange }) => {
+const LeftEditor = ({ code, onChange, readOnly = false }) => {
   return (
     <div className="editor-box h-full w-full">
       <Editor
@@ -11,7 +11,7 @@ const LeftEditor = ({ code, onChange }) => {
         theme="vs-dark"
         value={code}
         onChange={(nextValue) => onChange(nextValue ?? "")}
-        options={{ automaticLayout: true }}
+        options={{ automaticLayout: true, readOnly }}
       />
     </div>
   );

@@ -20,9 +20,9 @@ export const getLatestDiagram = async(req, res) => {
 };
 
 export const saveDiagram = async(req, res) => {
-  try {
+  try{
     const { title, schema } = req.body;
-    const newDiagram = new Diagram({
+      const newDiagram = new Diagram({
       title,
       schema,
       userId: req.user._id,
